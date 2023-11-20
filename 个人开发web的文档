@@ -1,0 +1,50 @@
+文档开发
+#用的是cloudflare
+
+在namesilo上买的域名
+
+使用本地的windows主机来当作服务器
+#我先在我的vsc上的powershell上安装scoop
+#代码为Set-ExecutionPolicy RemoteSigned -scope CurrentUser
+iwr -useb get.scoop.sh | iex
+
+使用服务器是nginx
+#安装代码是scoop install nginx
+
+我用的第一个代码是nginx -V
+
+用来查看nginx的安装目录
+#关闭nginx的code是nginx -s stop
+
+我使用了code cof地址来打开了我的文件
+
+#cd C:\Users\stark\scoop\persist\nginx
+
+#启动我用的是node server.js
+若出现有多个端口占用的情况下,可以使用以下代码
+#1查找进程netstat -ano | findstr :3000
+#2杀死进程taskkill /PID <进程号> /F
+
+若使用node.js.要把public文件,js文件都设置为静态文件
+#例子app.use(express.static(path.join(__dirname, 'public')));
+
+我应用了나이스来调用我学校的信息
+我用的是node.js的axios库
+
+不要忘记配置环境,需要配置mysql的环境
+
+#CREATE TABLE 101 (
+#    academic_year INT,
+#    grade INT,
+#    semester INT,
+#    date DATE,
+#    weekday INT,
+#    period INT,
+#    content VARCHAR(255),
+#    classroom_name VARCHAR(50),
+#    PRIMARY KEY ( date, period, classroom_name, grade)
+#)
+
+
+
+npm run dev
