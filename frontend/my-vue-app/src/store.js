@@ -4,19 +4,32 @@ export default createStore({
   state() {
     return {
       timetableData: null,
-      isLoggedIn:false
+      isLoggedIn:false,
+      currentcomponent:'kebiao',
     };
   },
   mutations: {
     setTimetableData(state, data) {
       state.timetableData = data;
+      //存储到localstorage里面2023-11-22
+    localStorage.setItem('timetableData',JSON.stringify(data));
     },
     //改变登录状态
     setLoggedIn(state,status){
         state.isLoggedIn= status;
+    },
+  
+    //导航按钮
+    changecomponent(state,component){
+      state.currentcomponent=component;
     }
   },
   actions: {
+    //changenavbar
+    changenavbar({commit},component){
+      commit('changecomponent',component)
+    },
+    //
     fetchTimetableData({ commit }, { gradeNumber, classNumber }) {
       fetch(`/api/getData?gradeNumber=${gradeNumber}&classNumber=${classNumber}`)
         .then(response => response.json())
@@ -58,6 +71,8 @@ export default createStore({
     outLoggedIn({commit}){
         commit('setLoggedIn',false)
     localStorage.removeItem('isLoggedIn');
+    // 清理时间表结构
+    localStorage.removeItem('timetableData');
     }
   }
 });

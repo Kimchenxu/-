@@ -54,8 +54,18 @@ export default{
                     this.fillTimetableWithData();
                 }
             }
-    }
+    },
+    created(){
+        const savedData = localStorage.getItem('timetableData');
+        if (savedData){
+            this.$store.commit('setTimetableData',JSON.parse(savedData));
+        }else{
+            
+        }
+    },
             };
+
+            
 </script>
 
 <style>

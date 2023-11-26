@@ -1,9 +1,9 @@
 <template>
-  <nav class="shell " :class="{ 'close':isShellClosed}">
+  <nav class="shell " :class="{'close':isShellClosed}">
           <header>
               <div class="image-text">
                   <span class="image">
-                      <img src="./1.jpg" alt="">
+                     
                   </span>
                   <div class="text logo-text">
                       <span class="name">starkim</span>
@@ -14,36 +14,46 @@
           <div class="menu-bar">
               <div class="menu">
                   <li class="search-box" @click="openShell">
-                      <i class="iconfont icon-sousuo icon"></i>
+                      <i>
+                        <el-icon class="icon"><Search /></el-icon>
+                      </i>
                       <input type="text" :placeholder="$t('message.3')">
                   </li>
                   <ul class="menu-links">
-                      <li class="nav-link">
-                          <a href="/home">
-                              <i class="iconfont icon-shouye icon"></i>
-                              <span class="text nac-text">{{ $t('message.4') }}</span>
-                          </a>
+                    <!--课程表-->
+                      <li class="nav-link" @click="changenavbar('kebiao')">
+                        
+                          <router-link to="/home">
+                              <i>
+                                <el-icon class="icon"><House /></el-icon>
+                              </i>
+                              <span class="text nac-text">
+                                {{ $t('message.4') }}</span>
+                          </router-link>>
                       </li>
-  
-                      <li class="nav-link">
-                          <a href="../html/calendar.html">
-                              <i class="iconfont icon-shoucangxiao icon"></i>
+                      <!--日历-->
+                      <!--这里面我用@click来实现,但我点击这个按钮是,就会输入calendar-->
+                      <li class="nav-link" @click="changenavbar('calendar')">
+                          <router-link to="/home">
+                              <i>
+                                <el-icon class="icon"><Calendar /></el-icon>
+                              </i>
                               <span class="text nac-text">{{ $t('message.5') }}</span>
-                          </a>
+                          </router-link>>
                       </li>
                   </ul>
               </div>
               <div class="bottom-content">
                   <li @click="logout">
                       <a href="javascript:void(0)">
-                          <i class="iconfont icon-zhuxiaoyuan icon"></i>
+                          <i>
+                            <el-icon class="icon"><DeleteFilled /></el-icon>
+                          </i>
                           <span class="text nac-text">{{ $t('message.6') }}</span>
                       </a>
                   </li>
                   <li class="mode" @click="toggleMode">
                       <div class="sun-moon">
-                          <i class="iconfont icon-rijian icon sun"></i>
-                          <i class="iconfont icon-yejian icon moon"></i>
                       </div>
                       <span class="mode-text text">{{ $t('message.7') }}</span>
                       <div class="toggle-switch">
@@ -57,6 +67,7 @@
 
 
 <script>
+import { mapActions } from 'vuex';
 import { useStore } from 'vuex';
 import { ref, computed } from 'vue';
 
@@ -98,7 +109,30 @@ setup() {
         modeText: computed(() => isDarkMode.value ? '白日模式' : '夜间模式'),
         logout
     };
+},
+methods:{
+  ...mapActions(['changenavbar'])
 }
+//之前没用vuex的代码
+/* 
+ components:{
+    Calendar,
+    TableKebiao,
+  },
+  data(){
+    return{
+      //这里面是初始值,我弄的是Kebiao
+      //利用的是下面的changeComponents
+      changeComponents: "Kebiao"
+    };
+  },
+  methods:{
+    change(components){
+      //这里面用了个changecomponents来在v-if那边===
+      //因为我的v-if是父组件,所以我需要利用vuex
+      this.changeComponents = components;
+    }
+  }*/
 };
 </script>
 
@@ -162,12 +196,12 @@ body {
 
 .image,
 .icon {
-  min-width: 60px;
+  min-width: 50px;
   border-radius: 6px;
 }
 
 .icon {
-  min-width: 60px;
+  min-width: 50px;
   border-radius: 6px;
   height: 100%;
   display: flex;

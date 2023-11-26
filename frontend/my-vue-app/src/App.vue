@@ -4,13 +4,15 @@ import TableKebiao from './components/TableKebiao.vue';
 import Login from './components/Login.vue';
 import Home from './components/Home.vue';
 import {mapState,useStore} from 'vuex';
+import Calendar from './components/Calendar.vue';
 
 export default{
   components:{
     Navbar,
     TableKebiao,
     Login,
-    Home
+    Home,
+    Calendar,
 },
 computed:{
   ...mapState(['isLoggedIn'])
