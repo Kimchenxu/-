@@ -5,10 +5,10 @@ const bodyParser = require('body-parser');
 const mysql = require('mysql');
 const cors = require('cors');
 const connection = mysql.createConnection({
-  host:'localhost',
-  user: 'root',
-  password: 'cxz320326',
-  database: 'kebiao'
+  host:'',
+  user: '',
+  password: '',
+  database: ''
 });
 
 /*function fetchSchoolDate() {
